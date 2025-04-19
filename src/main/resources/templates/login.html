@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login - SaberPro</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #3498db , #2ecc71);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            width: 320px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.6rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.6rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    <form th:action="@{/login}" method="post">
+        <label for="rol">Seleccionar rol:</label>
+        <select name="rol" required>
+            <option value="">-- Seleccione --</option>
+            <option value="coordinacion">Coordinación</option>
+            <option value="estudiante">Estudiante</option>
+        </select>
+
+        <input type="text" name="usuario" placeholder="Usuario" required />
+        <input type="password" name="contrasena" placeholder="Contraseña" required />
+        <button type="submit">Ingresar</button>
+    </form>
+
+    <div th:if="${error}" class="error" th:text="${error}"></div>
+</div>
+</body>
+</html>

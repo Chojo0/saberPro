@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Estudiante</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="submit"],
+        .cancel-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover,
+        .cancel-button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 th:text="${editMode == 'true'} ? 'Editar Estudiante' : 'Nuevo Estudiante'"></h2>
+
+    <div th:if="${error}" class="error">
+        <p th:text="${error}"></p>
+    </div>
+
+    <form th:action="@{/estudiantes/guardar}" th:object="${estudiante}" method="post">
+        <input type="hidden" th:field="*{id}" />
+
+        <div>
+            <label>Tipo de Documento</label>
+            <input type="text" th:field="*{tipoDocumento}" />
+        </div>
+
+        <div>
+            <label>Número de Documento</label>
+            <input type="number" th:field="*{numeroDocumento}" />
+        </div>
+
+        <div>
+            <label>Primer Apellido</label>
+            <input type="text" th:field="*{primerApellido}" />
+        </div>
+
+        <div>
+            <label>Segundo Apellido</label>
+            <input type="text" th:field="*{segundoApellido}" />
+        </div>
+
+        <div>
+            <label>Primer Nombre</label>
+            <input type="text" th:field="*{primerNombre}" />
+        </div>
+
+        <div>
+            <label>Segundo Nombre</label>
+            <input type="text" th:field="*{segundoNombre}" />
+        </div>
+
+        <div>
+            <label>Correo Electrónico</label>
+            <input type="email" th:field="*{correoElectronico}" />
+        </div>
+
+        <div>
+            <label>Número Telefónico</label>
+            <input type="text" th:field="*{numeroTelefonico}" />
+        </div>
+
+        <div>
+            <label>Número de Registro</label>
+            <input type="text" th:field="*{numeroRegistro}" />
+        </div>
+
+        <div>
+            <label>Puntaje General</label>
+            <input type="number" th:field="*{puntaje}" />
+        </div>
+
+        <div>
+            <label>Comunicación Escrita</label>
+            <input type="number" th:field="*{comunicacionEscrita}" />
+        </div>
+
+        <div>
+            <label>Razonamiento Cuantitativo</label>
+            <input type="number" th:field="*{razonamientoCuantitativo}" />
+        </div>
+
+        <div>
+            <label>Lectura Crítica</label>
+            <input type="number" th:field="*{lecturaCritica}" />
+        </div>
+
+        <div>
+            <label>Competencias Ciudadanas</label>
+            <input type="number" th:field="*{competenciasCiudadanas}" />
+        </div>
+
+        <div>
+            <label>Inglés</label>
+            <input type="number" th:field="*{ingles}" />
+        </div>
+
+        <div>
+            <label>Formulación de Proyectos</label>
+            <input type="number" th:field="*{formulacionDeProyectos}" />
+        </div>
+
+        <div>
+            <label>Pensamiento Científico</label>
+            <input type="number" th:field="*{pensamientoCientifico}" />
+        </div>
+
+        <div>
+            <label>Diseño de Software</label>
+            <input type="number" th:field="*{disenoDeSoftware}" />
+        </div>
+
+        <div class="button-group">
+            <input type="submit" value="Guardar" />
+            <a th:href="@{/estudiantes}" class="cancel-button">Cancelar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

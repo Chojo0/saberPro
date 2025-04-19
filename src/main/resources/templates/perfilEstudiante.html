@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil del Estudiante</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 2rem;
+            background: #f7f9fc;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+
+        .info, .info-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        .info-value {
+            color: #2c3e50;
+        }
+
+        .logout-button {
+            text-align: right;
+            margin-bottom: 1rem;
+        }
+
+        .logout-button form {
+            display: inline;
+        }
+
+        .logout-button button {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            background-color: #e74c3c;
+            color: white;
+            font-size: 0.95rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button button:hover {
+            background-color: #c0392b;
+        }
+
+        .section-title {
+            margin-top: 2rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- 🔻 Botón de cerrar sesión -->
+    <div class="logout-button">
+        <form th:action="@{/logout}" method="get">
+            <button type="submit">Cerrar sesión</button>
+        </form>
+    </div>
+    <!-- 🔺 Fin -->
+
+    <h1>Perfil del Estudiante</h1>
+
+    <div class="info"><strong>Nombre completo:</strong> <span th:text="${estudiante.primerNombre} + ' ' + ${estudiante.segundoNombre} + ' ' + ${estudiante.primerApellido} + ' ' + ${estudiante.segundoApellido}"></span></div>
+    <div class="info"><strong>Correo electrónico:</strong> <span th:text="${estudiante.correoElectronico}"></span></div>
+    <div class="info"><strong>Número de Registro:</strong> <span th:text="${estudiante.numeroRegistro}"></span></div>
+    <div class="info"><strong>Puntaje Global:</strong> <span th:text="${estudiante.puntaje}"></span></div>
+    <div class="info"><strong>Nivel Saber Pro:</strong> <span th:text="${estudiante.nivelSaberPro}"></span></div>
+
+    <div class="section-title">Áreas de Evaluación</div>
+
+    <!-- 🔻 Áreas con niveles incluidos -->
+    <div class="info-group"><span class="info-label">Comunicación Escrita:</span>
+        <span class="info-value" th:text="${estudiante.comunicacionEscrita} + ' (' + ${estudiante.nivelComunicacionEscrita} + ')'"></span>
+    </div>
+    <div class="info-group"><span class="info-label">Razonamiento Cuantitativo:</span>
+        <span class="info-value" th:text="${estudiante.razonamientoCuantitativo} + ' (' + ${estudiante.nivelRazonamientoCuantitativo} + ')'"></span>
+    </div>
+    <div class="info-group"><span class="info-label">Lectura Crítica:</span>
+        <span class="info-value" th:text="${estudiante.lecturaCritica} + ' (' + ${estudiante.nivelLecturaCritica} + ')'"></span>
+    </div>
+    <div class="info-group"><span class="info-label">Competencias Ciudadanas:</span>
+        <span class="info-value" th:text="${estudiante.competenciasCiudadanas} + ' (' + ${estudiante.nivelCompetenciasCiudadanas} + ')'"></span>
+    </div>
+    <div class="info-group"><span class="info-label">Inglés:</span>
+        <span class="info-value" th:text="${estudiante.ingles} + ' (' + ${estudiante.nivelSaberIngles} + ')' + ' (' + ${estudiante.nivelIngles} + ')'"></span>
+    </div>
+    <div class="info-group"><span class="info-label">Formulación de Proyectos:</span>
+        <span class="info-value" th:text="${estudiante.formulacionDeProyectos} + ' (' + ${estudiante.nivelFormulacionDeProyectos} + ')'"></span>
+    </div>
+    <div class="info-group"><span class="info-label">Pensamiento Científico:</span>
+        <span class="info-value" th:text="${estudiante.pensamientoCientifico} + ' (' + ${estudiante.nivelPensamientoCientifico} + ')'"></span>
+    </div>
+    <div class="info-group"><span class="info-label">Diseño de Software:</span>
+        <span class="info-value" th:text="${estudiante.disenoDeSoftware} + ' (' + ${estudiante.nivelDisenoDeSoftware} + ')'"></span>
+    </div>
+    <!-- 🔺 Fin -->
+
+</div>
+</body>
+</html>
